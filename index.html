@@ -8,46 +8,113 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('YOUR_BACKGROUND_IMAGE_URL') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       font-family: 'Comic Sans MS', cursive, sans-serif;
       color: #fff;
       text-align: center;
-      padding: 50px;
+      overflow-x: hidden;
     }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
     .message {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       padding: 30px;
       max-width: 600px;
       margin: 20px auto;
       font-size: 1.4em;
       line-height: 1.5em;
+      color: #fff;
     }
+
     .gif {
-      margin: 20px;
+      margin: 10px;
       width: 150px;
       height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
+    footer {
+      margin: 20px;
+      font-size: 1em;
+      color: #fff;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://i.pinimg.com/originals/81/44/24/8144244a33439f30fc12d309b7f7b2e7.gif') no-repeat center;
+      background-size: contain;
+      animation: floatUp 8s infinite ease-in;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
   </style>
 </head>
 <body>
-  <h1>🌹 To My Beautiful Wife 🌹</h1>
+  <h1>🌸 To My Beautiful Wife 🌸</h1>
   
   <div class="message">
     <p>
       My dearest love,<br><br>
-      Every day with you is a blessing. You bring joy, warmth, and sweetness to my life — just like the desserts you create! 🍰🍓<br><br>
-      I love you more than words can say. Forever and always. ❤️
+      Every moment with you is the sweetest part of my life. You are my joy, my heart, my everything. 💖<br><br>
+      I love you endlessly — forever and always. ❤️💐
     </p>
   </div>
   
-  <img src="YOUR_CUTE_GIF_URL1" alt="cute gif" class="gif" />
-  <img src="YOUR_CUTE_GIF_URL2" alt="cute gif" class="gif" />
-  <img src="YOUR_CUTE_GIF_URL3" alt="cute gif" class="gif" />
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute gif" class="gif" />
+  <img src="https://media.giphy.com/media/3o6ZsXmTvs5vZiPI7m/giphy.gif" alt="cute gif" class="gif" />
+  <img src="https://media.giphy.com/media/j0kQJxo5mzGYboB7qM/giphy.gif" alt="cute gif" class="gif" />
   
   <footer>
     <p>Made with ❤️ by your husband.</p>
   </footer>
+
+  <!-- Optional background music -->
+  <audio autoplay loop>
+    <source src="YOUR_MUSIC_URL.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating hearts generator -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
 </body>
 </html>
