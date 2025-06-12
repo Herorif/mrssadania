@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Will You Be Mine?</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: linear-gradient(to right, #fbc2eb, #a6c1ee);
       font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -15,24 +19,28 @@
     }
 
     h1 {
-      margin-top: 20%;
-      font-size: 3em;
+      margin: 20% 5% 5%;
+      font-size: 2.2em;
       color: #fff;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
     .buttons {
-      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
     }
 
     button {
       padding: 15px 30px;
-      font-size: 1.5em;
-      margin: 20px;
+      font-size: 1.2em;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
+      max-width: 80vw;
     }
 
     #yes {
@@ -53,6 +61,7 @@
       background-size: contain;
       animation: floatUp 8s infinite ease-in;
       opacity: 0.8;
+      z-index: 0;
     }
 
     @keyframes floatUp {
@@ -68,6 +77,18 @@
         opacity: 0;
       }
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.7em;
+        margin-top: 40%;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 12px 24px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -81,8 +102,7 @@
   <script>
     function shrinkNo() {
       const noBtn = document.getElementById('no');
-      let currentSize = window.getComputedStyle(noBtn).fontSize;
-      let size = parseFloat(currentSize);
+      let size = parseFloat(window.getComputedStyle(noBtn).fontSize);
       if (size > 5) {
         noBtn.style.fontSize = (size - 2) + "px";
       } else {
