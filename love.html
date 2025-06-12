@@ -16,8 +16,9 @@
     }
 
     h1 {
-      margin-top: 50px;
-      font-size: 2.5em;
+      margin-top: 30px;
+      font-size: 2em;
+      padding: 0 20px;
       color: #fff;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
@@ -25,24 +26,48 @@
     .message {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      padding: 30px;
-      max-width: 600px;
+      padding: 20px;
+      max-width: 90%;
       margin: 20px auto;
-      font-size: 1.4em;
+      font-size: 1.2em;
       line-height: 1.5em;
       color: #fff;
     }
 
     .gif {
       margin: 10px;
-      width: 150px;
+      width: 100px;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px 20px;
+    }
+
+    .nav-buttons button {
+      padding: 12px 18px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      background-color: #ff7eb9;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #ff4eab;
+    }
+
     footer {
-      margin: 20px;
+      margin: 30px 20px;
       font-size: 1em;
       color: #fff;
     }
@@ -71,28 +96,59 @@
       }
     }
 
+    @media (max-width: 600px) {
+      .nav-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-buttons button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .message {
+        font-size: 1.1em;
+      }
+
+      .gif {
+        width: 80px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>🌸 To My Beloved Marissa Dania 🌸</h1>
-  
+
   <div class="message">
     <p>
-      My sha,<br><br>
+      My Sha,<br><br>
       I just made this website today just to tell you that I love you. <br><br>
       I love you endlessly — forever and always. ❤️💐 <br><br>
       Looking forward to more days with you :)
     </p>
   </div>
-  
+
+  <div class="nav-buttons">
+    <button onclick="location.href='countdown.html'">⏳ Countdown</button>
+    <button onclick="location.href='reasons.html'">💘 100 Reasons</button>
+    <button onclick="location.href='abouther.html'">🌷 About Her</button>
+    <button onclick="location.href='wishlist.html'">📝 Wishlist</button>
+    <button onclick="location.href='playlist.html'">🎵 Playlist</button>
+    <button onclick="location.href='ourstories.html'">📖 Our Stories</button>
+  </div>
+
   <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWI5emQ2ejRhemYwdHo2NTBzdXB1NHl4b2ZvNGllNGgwenZtNm9wZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kcZPBnwMkbKSgdTdK9/giphy.gif" alt="cute gif" class="gif" />
   <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZm45MTRqdWJmdnFyZzJ3bmZkNXMxemxiaW51OXlpaG5mMmVzNTdoYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif" alt="cute gif" class="gif" />
   <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2ZjbmF5ZHpzaDBpMWdja2dyZ3N0MzBmcGs5bGJsMG53bmlkMDE4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26FLdmIp6wJr91JAI/giphy.gif" alt="cute gif" class="gif" />
-  
+
   <footer>
     <p>Made with ❤️ by your Harif.</p>
   </footer>
-
 
   <script>
     function createHeart() {
@@ -101,14 +157,10 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (4 + Math.random() * 4) + "s";
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
+      setTimeout(() => heart.remove(), 8000);
     }
 
     setInterval(createHeart, 500);
   </script>
-
 </body>
 </html>
