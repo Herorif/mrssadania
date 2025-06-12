@@ -2,143 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Will You Be Mine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Be Mine? 💖</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
-      color: #fff;
       margin: 0;
       padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      text-align: center;
+      color: white;
     }
 
     h1 {
-      margin: 20% 5% 5%;
-      font-size: 2.2em;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-top: 100px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
     }
 
     .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
+      margin-top: 50px;
     }
 
     button {
       padding: 15px 30px;
+      margin: 10px;
       font-size: 1.2em;
       border: none;
-      border-radius: 10px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      max-width: 80vw;
+      transition: transform 0.2s;
     }
 
     #yes {
-      background-color: #ff6f91;
+      background-color: #ff5e7e;
       color: white;
     }
 
     #no {
-      background-color: #9d65c9;
-      color: white;
+      background-color: #ccc;
+      color: #333;
     }
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: url('https://i.pinimg.com/originals/81/44/24/8144244a33439f30fc12d309b7f7b2e7.gif') no-repeat center;
-      background-size: contain;
-      animation: floatUp 8s infinite ease-in;
-      opacity: 0.8;
-      z-index: 0;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.7em;
-        margin-top: 40%;
-      }
-
-      button {
-        font-size: 1em;
-        padding: 12px 24px;
-      }
+    button:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
-
-<script>
-  function saveYesAndRedirect() {
-    localStorage.setItem('yesTime', new Date());
-    window.location.href = 'love.html'; // Redirect to love page or countdown.html if you want
-  }
-
-  function shrinkNo() {
-    const noBtn = document.getElementById('no');
-    const currentSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
-    if (currentSize > 6) {
-      noBtn.style.fontSize = (currentSize * 0.8) + 'px';
-    }
-  }
-</script>
-  
 <body>
-  <h1>Will you be my girlfriend? 💖</h1>
+
+  <h1>Will you be mine forever, Marissa Dania? 💍</h1>
 
   <div class="buttons">
-    <button id="yes" onclick="saveYesAndRedirect()">Yes 😍</button>
+    <button id="yes" onclick="sayYes()">Yes 😍</button>
     <button id="no" onclick="shrinkNo()">No 🙈</button>
   </div>
 
   <script>
+    // Redirect if already clicked "Yes"
+    if (localStorage.getItem("yesClicked") === "true") {
+      window.location.href = "love.html";
+    }
+
+    function sayYes() {
+      localStorage.setItem("yesClicked", "true");
+      window.location.href = "love.html";
+    }
+
     function shrinkNo() {
-      const noBtn = document.getElementById('no');
-      let size = parseFloat(window.getComputedStyle(noBtn).fontSize);
+      const noBtn = document.getElementById("no");
+      const size = parseFloat(window.getComputedStyle(noBtn).fontSize);
       if (size > 5) {
         noBtn.style.fontSize = (size - 2) + "px";
       } else {
-        noBtn.innerText = "🥺 Please say yes...";
+        noBtn.innerText = "Just press Yes la 😜";
       }
     }
-
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
-    }
-
-    setInterval(createHeart, 500);
   </script>
+
 </body>
 </html>
