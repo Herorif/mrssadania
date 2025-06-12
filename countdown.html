@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Countdown ❤️</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .countup {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    .note {
+      font-size: 1.1em;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    #resetButton {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none; /* Show this only during testing */
+    }
+  </style>
+</head>
+<body>
+  <h1>⏳ Since You Said Yes...</h1>
+  <div class="countup" id="timer">Loading...</div>
+  <div class="note">Time since that beautiful moment we began our forever ❤️</div>
+
+  <button id="resetButton">Reset Countdown (Testing Only)</button>
+
+  <script>
+    const timerDisplay = document.getElementById('timer');
+    const resetButton = document.getElementById('resetButton');
+
+    function formatTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const days = Math.floor(totalSeconds / (3600 * 24));
+      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function updateTimer() {
+      const startTime = localStorage.getItem('yesTime');
+      if (startTime) {
+        const elapsed = Date.now() - new Date(startTime);
+        timerDisplay.textContent = formatTime(elapsed);
+      } else {
+        timerDisplay.textContent = 'Please press "Yes" first!';
+      }
+    }
+
+    // Start interval
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // For testing: show reset button if accessed by you
+    resetButton.style.display = 'inline-block';
+
+    resetButton.onclick = () => {
+      localStorage.removeItem('yesTime');
+      location.reload();
+    };
+  </script>
+</body>
+</html>
