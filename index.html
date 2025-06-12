@@ -54,7 +54,7 @@
   <h1>Marissa Dania, will you officially be my girlfriend? </h1>
 
   <div class="buttons">
-    <button id="yes" onclick="sayYes()">Yes 😍</button>
+    <button id="yes" onclick="startLove()">Yes 😍</button>
     <button id="no" onclick="shrinkNo()">No 🙈</button>
   </div>
 
@@ -80,5 +80,15 @@
     }
   </script>
 
+
+  <script>
+  function startLove() {
+    const now = new Date().getTime();
+    localStorage.setItem("yesPressed", "true");
+    localStorage.setItem("loveStartTime", now);
+    window.location.href = "love.html";
+  }
+  </script>
+  
 </body>
 </html>
