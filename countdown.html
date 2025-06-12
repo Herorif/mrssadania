@@ -1,88 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Countdown ❤️</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
-      color: #333;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 40px 20px;
+      margin: 0;
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2em;
       margin-bottom: 20px;
     }
 
-    .countup {
+    #countdown {
       font-size: 2em;
+      font-weight: bold;
       margin-top: 20px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
-    .note {
-      font-size: 1.1em;
-      margin-top: 10px;
-      color: #555;
-    }
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 1.5em;
+      }
 
-    #resetButton {
-      margin-top: 30px;
-      padding: 10px 20px;
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      display: none; /* Show this only during testing */
+      #countdown {
+        font-size: 1.5em;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>⏳ Since You Said Yes...</h1>
-  <div class="countup" id="timer">Loading...</div>
-  <div class="note">Time since that beautiful moment we began our forever ❤️</div>
-
-  <button id="resetButton">Reset Countdown (Testing Only)</button>
+  <h1>💖 Time Since You Said YES 💖</h1>
+  <div id="countdown">Loading...</div>
 
   <script>
-    const timerDisplay = document.getElementById('timer');
-    const resetButton = document.getElementById('resetButton');
+    const countdownEl = document.getElementById("countdown");
+    const startTime = localStorage.getItem("loveStartTime");
 
-    function formatTime(ms) {
-      const totalSeconds = Math.floor(ms / 1000);
-      const days = Math.floor(totalSeconds / (3600 * 24));
-      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
+    if (!startTime) {
+      countdownEl.textContent = "You haven’t clicked 'Yes' yet!";
+    } else {
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = now - parseInt(startTime);
 
-      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
 
-    function updateTimer() {
-      const startTime = localStorage.getItem('yesTime');
-      if (startTime) {
-        const elapsed = Date.now() - new Date(startTime);
-        timerDisplay.textContent = formatTime(elapsed);
-      } else {
-        timerDisplay.textContent = 'Please press "Yes" first!';
+        countdownEl.innerHTML =
+          `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
       }
+
+      updateCountdown(); // initial call
+      setInterval(updateCountdown, 1000); // update every second
     }
-
-    // Start interval
-    setInterval(updateTimer, 1000);
-    updateTimer();
-
-    // For testing: show reset button if accessed by you
-    resetButton.style.display = 'inline-block';
-
-    resetButton.onclick = () => {
-      localStorage.removeItem('yesTime');
-      location.reload();
-    };
   </script>
 </body>
 </html>
