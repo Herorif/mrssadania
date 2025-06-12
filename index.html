@@ -91,11 +91,27 @@
     }
   </style>
 </head>
+
+<script>
+  function saveYesAndRedirect() {
+    localStorage.setItem('yesTime', new Date());
+    window.location.href = 'love.html'; // Redirect to love page or countdown.html if you want
+  }
+
+  function shrinkNo() {
+    const noBtn = document.getElementById('no');
+    const currentSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+    if (currentSize > 6) {
+      noBtn.style.fontSize = (currentSize * 0.8) + 'px';
+    }
+  }
+</script>
+  
 <body>
   <h1>Will you be my girlfriend? 💖</h1>
 
   <div class="buttons">
-    <button id="yes" onclick="location.href='love.html'">Yes 😍</button>
+    <button id="yes" onclick="saveYesAndRedirect()">Yes 😍</button>
     <button id="no" onclick="shrinkNo()">No 🙈</button>
   </div>
 
